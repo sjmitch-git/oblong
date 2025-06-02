@@ -41,7 +41,7 @@ h6 {
 }
 
 p {
-  @apply text-lg leading-relaxed mb-[1em] border border-warning max-w-prose;
+  @apply text-lg leading-relaxed mb-[1em] max-w-prose;
 }
 
 header {
