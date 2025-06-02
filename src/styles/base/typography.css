@@ -1,0 +1,49 @@
+/* HEADERS */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-semibold opacity-80 my-[.5em];
+}
+
+h1 {
+  @apply text-5xl;
+
+  & + p {
+    @apply text-2xl;
+
+    & + p {
+      @apply text-xl;
+    }
+  }
+}
+
+h2 {
+  @apply text-4xl;
+}
+
+h3 {
+  @apply text-3xl;
+}
+
+h4 {
+  @apply text-2xl;
+}
+
+h5 {
+  @apply text-xl;
+}
+
+h6 {
+  @apply text-lg;
+}
+
+p {
+  @apply text-lg leading-relaxed mb-[1em] border border-warning max-w-prose;
+}
+
+header {
+  @apply border border-info;
+}

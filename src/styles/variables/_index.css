@@ -1,0 +1,14 @@
+@import "./colors.css";
+
+:root {
+  /* Background and Foreground */
+  --background: var(--light);
+  --foreground: var(--dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--dark);
+    --foreground: var(--light);
+  }
+}

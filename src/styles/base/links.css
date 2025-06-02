@@ -1,0 +1,44 @@
+a {
+  @apply text-primary transition-colors duration-200 underline underline-offset-2;
+
+  &:hover,
+  &:focus {
+    @apply text-secondary no-underline;
+  }
+
+  &:focus-visible {
+    @apply outline-none bg-accent-light text-dark;
+  }
+
+  &:active {
+    @apply text-accent;
+  }
+
+  &[target="_blank"],
+  &[download] {
+    @apply inline-flex items-start gap-1 mr-1 after:text-xs after:align-super;
+  }
+
+  &[target="_blank"]::after {
+    content: "↗";
+  }
+
+  &[download]::after {
+    content: "⬇";
+  }
+
+  &.button-link {
+    @apply inline-block px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition;
+  }
+}
+
+.btn,
+button,
+input[type="button"],
+input[type="submit"] {
+  @apply inline-block px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition;
+
+  &:focus-visible {
+    @apply outline-accent outline-4;
+  }
+}
