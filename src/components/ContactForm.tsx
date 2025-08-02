@@ -22,8 +22,8 @@ export default function ContactForm({ setIsOpen }: ContactFormProps) {
   useEffect(() => {
     if (state.succeeded && setIsOpen) {
       const timer = setTimeout(() => {
-        reset();
         setIsOpen(false);
+        reset();
       }, 5000);
       return () => clearTimeout(timer);
     }
