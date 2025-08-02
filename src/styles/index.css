@@ -4,7 +4,7 @@
 @import "./base/_index.css";
 
 @import "tailwindcss/components";
-/* @import "./components/_index.css"; */
+@import "./components/_index.css";
 
 @import "tailwindcss/utilities";
 /* @import "./utilities/_index.css"; */

@@ -43,7 +43,3 @@ h6 {
 p {
   @apply text-lg leading-relaxed mb-[1em] max-w-prose;
 }
-
-header {
-  @apply border border-info;
-}

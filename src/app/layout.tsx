@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import { MetaData } from "@/lib/config";
 import "@/styles/index.css";
 
-export const metadata: Metadata = {
-  title: "Oblong",
-  description: "IT and web services.",
-};
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+export const metadata = MetaData;
 
 export default function RootLayout({
   children,
@@ -13,8 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-primary">
-        <main className="flex-grow container mx-auto max-w-4xl pt-12 pb-12 px-0">{children}</main>
+      <body className="bg-light">
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );

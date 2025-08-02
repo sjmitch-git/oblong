@@ -21,6 +21,7 @@ a {
 
   &[target="_blank"]::after {
     content: "↗";
+    @apply no-underline text-xs align-super;
   }
 
   &[download]::after {
@@ -28,17 +29,17 @@ a {
   }
 
   &.button-link {
-    @apply inline-block px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition;
+    @apply inline-block px-4 py-2 no-underline bg-primary-dark text-white rounded hover:bg-secondary transition;
   }
 }
 
-.btn,
+/* .btn,
 button,
 input[type="button"],
 input[type="submit"] {
-  @apply inline-block px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition;
+  @apply inline-block px-4 py-2  hover:opacity-80 transition;
 
   &:focus-visible {
     @apply outline-accent outline-4;
   }
-}
+} */

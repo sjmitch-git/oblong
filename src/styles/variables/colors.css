@@ -4,9 +4,9 @@
   --dark: theme("colors.gray.900");
 
   /* Primary Colors */
-  --primary: theme("colors.indigo.500");
-  --primary-light: theme("colors.indigo.300");
-  --primary-dark: theme("colors.indigo.700");
+  --primary: theme("colors.blue.500");
+  --primary-light: theme("colors.blue.300");
+  --primary-dark: theme("colors.blue.700");
 
   /* Secondary Colors */
   --secondary: theme("colors.cyan.500");
@@ -47,4 +47,16 @@
   --info: theme("colors.blue.500");
   --info-light: theme("colors.blue.300");
   --info-dark: theme("colors.blue.700");
+}
+
+:root {
+  --background: var(--light);
+  --foreground: var(--dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--dark);
+    --foreground: var(--light);
+  }
 }
