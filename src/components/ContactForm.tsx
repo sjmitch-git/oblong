@@ -27,7 +27,7 @@ export default function ContactForm({ setIsOpen }: ContactFormProps) {
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [state.succeeded, setIsOpen]);
+  }, [state.succeeded, setIsOpen, reset]);
 
   const closeDialog = () => {
     if (setIsOpen) {
