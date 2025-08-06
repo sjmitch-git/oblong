@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { getArticle, getAllArticles } from "@/lib/contentful-api";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Hero from "@/components/Hero";
@@ -5,6 +6,10 @@ import Hero from "@/components/Hero";
 type ArticleProps = {
   title: string;
   slug: string;
+  description: string;
+  body: {
+    json: any;
+  };
   sys: {
     id: string;
   };
@@ -15,7 +20,7 @@ type Params = {
 };
 
 type PortfolioArticleProps = {
-  params: Params;
+  params: Promise<Params>;
 };
 
 export async function generateStaticParams() {
@@ -26,9 +31,20 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: PortfolioArticleProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticle(slug);
+
+  return {
+    title: article.title,
+    description: article.description,
+  };
+}
+
 export default async function PortfolioArticle({ params }: PortfolioArticleProps) {
-  const article = await getArticle(params.slug);
-  console.log("Article:", article);
+  const { slug } = await params;
+  const article = await getArticle(slug);
+
   return (
     <main>
       <Hero title={article.title} description={article.description} />
