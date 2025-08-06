@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getArticle, getAllArticles } from "@/lib/contentful-api";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { Document } from "@contentful/rich-text-types";
 import Hero from "@/components/Hero";
 
 type ArticleProps = {
@@ -8,7 +9,7 @@ type ArticleProps = {
   slug: string;
   description: string;
   body: {
-    json: any;
+    json: Document;
   };
   sys: {
     id: string;
