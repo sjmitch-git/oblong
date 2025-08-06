@@ -24,6 +24,13 @@
       "@utils": ["src/lib/utils"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "postcss.config.mjs"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "postcss.config.mjs",
+    "src/lib/contentful-client.js"
+  ],
   "exclude": ["node_modules"]
 }
