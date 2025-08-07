@@ -1,3 +1,12 @@
+const SHOWCASES_GRAPHQL_FIELDS = `
+  sys {
+    id
+  }
+  shortTitle
+  slug
+  date
+`;
+
 const SHOWCASE_GRAPHQL_FIELDS = `
   sys {
     id
@@ -27,8 +36,8 @@ const SHOWCASE_GRAPHQL_FIELDS = `
   }
 `;
 
-async function fetchGraphQL(query, preview = false, tag = "showcase") {
-  return fetch(
+export async function fetchGraphQL(query, preview = false, tag = "showcase") {
+  const response = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
     {
       method: "POST",
@@ -43,7 +52,20 @@ async function fetchGraphQL(query, preview = false, tag = "showcase") {
       body: JSON.stringify({ query }),
       next: { tags: [tag] },
     }
-  ).then((response) => response.json());
+  );
+
+  if (!response.ok) {
+    console.error(`Contentful API error: ${response.status} ${response.statusText}`);
+    throw new Error(`Contentful API request failed: ${response.status}`);
+  }
+
+  const data = await response.json();
+  if (data.errors) {
+    console.error("Contentful GraphQL errors:", JSON.stringify(data.errors, null, 2));
+    throw new Error("Contentful GraphQL query failed");
+  }
+
+  return data;
 }
 
 function extractShowcaseEntries(fetchResponse) {
@@ -55,25 +77,41 @@ export async function getAllShowcases(isDraftMode = false) {
   let skip = 0;
   const pageSize = 100;
 
-  while (true) {
-    const showcases = await fetchGraphQL(
-      `query {
-        showcaseCollection(where:{slug_exists: true}, order: date_DESC, skip: ${skip}, limit: ${pageSize}, preview: ${
-        isDraftMode ? "true" : "false"
-      }) {
-          items {
-            ${SHOWCASE_GRAPHQL_FIELDS}
+  try {
+    while (true) {
+      const showcases = await fetchGraphQL(
+        `query {
+          showcaseCollection(where:{slug_exists: true}, order: date_DESC, skip: ${skip}, limit: ${pageSize}, preview: ${
+          isDraftMode ? "true" : "false"
+        }) {
+            items {
+             ${SHOWCASES_GRAPHQL_FIELDS}
+            }
+            total
           }
-          total
-        }
-      }`,
-      isDraftMode,
-      "showcase"
+        }`,
+        isDraftMode,
+        "showcase"
+      );
+
+      const items = extractShowcaseEntries(showcases);
+      allShowcases = [...allShowcases, ...items];
+
+      const total = showcases?.data?.showcaseCollection?.total || 0;
+      if (items.length === 0 || allShowcases.length >= total) {
+        break;
+      }
+      skip += pageSize;
+    }
+  } catch (error) {
+    console.error("Error fetching showcases:", error);
+    throw error;
+  }
+
+  if (allShowcases.length === 0) {
+    console.warn(
+      "No showcase entries found in Contentful. Check content model fields, slugs, API tokens, or preview mode."
     );
-    const items = extractShowcaseEntries(showcases) || [];
-    allShowcases = [...allShowcases, ...items];
-    if (items.length < pageSize) break; // No more entries
-    skip += pageSize;
   }
 
   return allShowcases;

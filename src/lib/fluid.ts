@@ -1,4 +1,5 @@
 export {
+  Breadcrumbs,
   Heading,
   Loading,
   Pagination,

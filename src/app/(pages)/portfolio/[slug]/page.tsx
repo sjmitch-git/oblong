@@ -1,54 +1,64 @@
 import { Metadata } from "next";
 import { getAllShowcases, getShowcase } from "@/lib/contentful-api";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Document } from "@contentful/rich-text-types";
+import { ShowcaseProps } from "@/lib/types";
+import { Alert, Breadcrumbs } from "@/lib/fluid";
 import Hero from "@/components/Hero";
-
-type ArticleProps = {
-  title: string;
-  slug: string;
-  description: string;
-  body: {
-    json: Document;
-  };
-  sys: {
-    id: string;
-  };
-};
+import { BREADCRUMBS_SEPARATOR, BREADCRUMBS_SIZE, BREADCRUMBS_HOMELABEL } from "@/lib/constants";
 
 type Params = {
   slug: string;
 };
 
-type PortfolioArticleProps = {
+type PortfolioShowcaseProps = {
   params: Promise<Params>;
 };
 
 export async function generateStaticParams() {
   const allShowcases = await getAllShowcases();
-  return allShowcases.map((showcase) => ({
+  return allShowcases.map((showcase: ShowcaseProps) => ({
     slug: showcase.slug,
   }));
 }
 
-export async function generateMetadata({ params }: PortfolioArticleProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PortfolioShowcaseProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getShowcase(slug);
+  const showcase: ShowcaseProps | undefined = await getShowcase(slug);
+
+  if (!showcase) {
+    return {
+      title: "Article Not Found",
+      description: "The requested article could not be found.",
+    };
+  }
 
   return {
-    title: article.title,
-    description: article.description,
+    title: showcase.title,
+    description: showcase.description,
   };
 }
 
-export default async function PortfolioArticle({ params }: PortfolioArticleProps) {
+export default async function PortfolioArticle({ params }: PortfolioShowcaseProps) {
   const { slug } = await params;
-  const article = await getShowcase(slug);
+  const showcase: ShowcaseProps | undefined = await getShowcase(slug);
+
+  if (!showcase) {
+    return (
+      <div>
+        <Alert status="error" message="Page not found" title="Oops!" />
+      </div>
+    );
+  }
 
   return (
-    <main>
-      <Hero title={article.title} description={article.description} />
-      <div className="">{documentToReactComponents(article.body.json)}</div>
-    </main>
+    <>
+      <Breadcrumbs
+        homeLabel={BREADCRUMBS_HOMELABEL}
+        separator={BREADCRUMBS_SEPARATOR}
+        size={BREADCRUMBS_SIZE}
+      />
+      <Hero title={showcase.title} description={showcase.description} />
+      <div className="cms-body">{documentToReactComponents(showcase.body.json)}</div>
+    </>
   );
 }
