@@ -56,6 +56,7 @@ export default async function PortfolioArticle({ params }: PortfolioShowcaseProp
         homeLabel={BREADCRUMBS_HOMELABEL}
         separator={BREADCRUMBS_SEPARATOR}
         size={BREADCRUMBS_SIZE}
+        activeLabel={showcase.shortTitle}
       />
       <Hero title={showcase.title} description={showcase.description} />
       <div className="cms-body">{documentToReactComponents(showcase.body.json)}</div>
