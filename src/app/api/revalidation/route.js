@@ -9,7 +9,14 @@ export async function POST(request) {
     return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
   }
 
-  revalidateTag("articles");
+  const payload = await request.json();
+  const contentType = payload?.sys?.contentType?.sys?.id;
+  const tagMap = {
+    showcase: "showcase",
+  };
+  const tag = tagMap[contentType] || "default";
+
+  revalidateTag(tag);
 
   return NextResponse.json({ revalidated: true, now: Date.now() });
 }

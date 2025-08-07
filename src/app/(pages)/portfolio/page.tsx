@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { getAllArticles } from "@/lib/contentful-api";
+import { getAllShowcases } from "@/lib/contentful-api";
 import Hero from "@/components/Hero";
 
 const title = "Portfolio";
-const description = "A selection of projects...";
+const description = "This page is under construction. Please check back later.";
 
 export const metadata: Metadata = {
   title: title,
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 type ArticleProps = {
   title: string;
+  shortTitle: string;
   slug: string;
   sys: {
     id: string;
@@ -21,7 +22,7 @@ type ArticleProps = {
 };
 
 export default async function PortfolioPage() {
-  const articles = await getAllArticles();
+  const articles = await getAllShowcases();
   return (
     <>
       <Hero title={title} description={description} />
@@ -33,7 +34,7 @@ export default async function PortfolioPage() {
               className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden"
             >
               <h3 className="text-2xl font-bold leading-tight text-zinc-900 dark:text-zinc-50  py-4">
-                {article.title}
+                {article.shortTitle}
               </h3>
               <div className="flex justify-end">
                 <Link

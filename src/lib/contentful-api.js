@@ -1,8 +1,9 @@
-const ARTICLE_GRAPHQL_FIELDS = `
+const SHOWCASE_GRAPHQL_FIELDS = `
   sys {
     id
   }
   title
+  shortTitle
   slug
   description
   body {
@@ -26,15 +27,13 @@ const ARTICLE_GRAPHQL_FIELDS = `
   }
 `;
 
-async function fetchGraphQL(query, preview = false) {
+async function fetchGraphQL(query, preview = false, tag = "showcase") {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // Switch the Bearer token depending on whether the fetch is supposed to retrieve live
-        // Contentful content or draft content
         Authorization: `Bearer ${
           preview
             ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
@@ -42,51 +41,45 @@ async function fetchGraphQL(query, preview = false) {
         }`,
       },
       body: JSON.stringify({ query }),
-      // Associate all fetches for articles with an "articles" cache tag so content can
-      // be revalidated or updated from Contentful on publish
-      next: { tags: ["articles"] },
+      next: { tags: [tag] },
     }
   ).then((response) => response.json());
 }
 
-function extractArticleEntries(fetchResponse) {
+function extractShowcaseEntries(fetchResponse) {
   return fetchResponse?.data?.showcaseCollection?.items;
 }
 
-export async function getAllArticles(
-  // For this demo set the default limit to always return 3 articles.
-  limit = 3,
-  // By default this function will return published content but will provide an option to
-  // return draft content for reviewing articles before they are live
-  isDraftMode = false
-) {
+export async function getAllShowcases(limit = 3, isDraftMode = false) {
   const articles = await fetchGraphQL(
     `query {
         showcaseCollection(where:{slug_exists: true}, order: date_DESC, limit: ${limit}, preview: ${
       isDraftMode ? "true" : "false"
     }) {
           items {
-            ${ARTICLE_GRAPHQL_FIELDS}
+            ${SHOWCASE_GRAPHQL_FIELDS}
           }
         }
       }`,
-    isDraftMode
+    isDraftMode,
+    "showcase"
   );
-  return extractArticleEntries(articles);
+  return extractShowcaseEntries(articles);
 }
 
-export async function getArticle(slug, isDraftMode = false) {
+export async function getShowcase(slug, isDraftMode = false) {
   const article = await fetchGraphQL(
     `query {
         showcaseCollection(where:{slug: "${slug}"}, limit: 1, preview: ${
       isDraftMode ? "true" : "false"
     }) {
           items {
-            ${ARTICLE_GRAPHQL_FIELDS}
+            ${SHOWCASE_GRAPHQL_FIELDS}
           }
         }
       }`,
-    isDraftMode
+    isDraftMode,
+    "showcase"
   );
-  return extractArticleEntries(article)[0];
+  return extractShowcaseEntries(article)[0];
 }

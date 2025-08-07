@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getArticle, getAllArticles } from "@/lib/contentful-api";
+import { getAllShowcases, getShowcase } from "@/lib/contentful-api";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Document } from "@contentful/rich-text-types";
 import Hero from "@/components/Hero";
@@ -25,7 +25,7 @@ type PortfolioArticleProps = {
 };
 
 export async function generateStaticParams() {
-  const allArticles = await getAllArticles();
+  const allArticles = await getAllShowcases();
 
   return allArticles.map((article: ArticleProps) => ({
     slug: article.slug,
@@ -34,7 +34,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PortfolioArticleProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getArticle(slug);
+  const article = await getShowcase(slug);
 
   return {
     title: article.title,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PortfolioArticleProps): Promi
 
 export default async function PortfolioArticle({ params }: PortfolioArticleProps) {
   const { slug } = await params;
-  const article = await getArticle(slug);
+  const article = await getShowcase(slug);
 
   return (
     <main>
