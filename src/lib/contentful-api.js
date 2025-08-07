@@ -50,21 +50,33 @@ function extractShowcaseEntries(fetchResponse) {
   return fetchResponse?.data?.showcaseCollection?.items;
 }
 
-export async function getAllShowcases(limit = 3, isDraftMode = false) {
-  const articles = await fetchGraphQL(
-    `query {
-        showcaseCollection(where:{slug_exists: true}, order: date_DESC, limit: ${limit}, preview: ${
-      isDraftMode ? "true" : "false"
-    }) {
+export async function getAllShowcases(isDraftMode = false) {
+  let allShowcases = [];
+  let skip = 0;
+  const pageSize = 100;
+
+  while (true) {
+    const showcases = await fetchGraphQL(
+      `query {
+        showcaseCollection(where:{slug_exists: true}, order: date_DESC, skip: ${skip}, limit: ${pageSize}, preview: ${
+        isDraftMode ? "true" : "false"
+      }) {
           items {
             ${SHOWCASE_GRAPHQL_FIELDS}
           }
+          total
         }
       }`,
-    isDraftMode,
-    "showcase"
-  );
-  return extractShowcaseEntries(articles);
+      isDraftMode,
+      "showcase"
+    );
+    const items = extractShowcaseEntries(showcases) || [];
+    allShowcases = [...allShowcases, ...items];
+    if (items.length < pageSize) break; // No more entries
+    skip += pageSize;
+  }
+
+  return allShowcases;
 }
 
 export async function getShowcase(slug, isDraftMode = false) {

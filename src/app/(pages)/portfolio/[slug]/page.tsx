@@ -25,10 +25,9 @@ type PortfolioArticleProps = {
 };
 
 export async function generateStaticParams() {
-  const allArticles = await getAllShowcases();
-
-  return allArticles.map((article: ArticleProps) => ({
-    slug: article.slug,
+  const allShowcases = await getAllShowcases();
+  return allShowcases.map((showcase) => ({
+    slug: showcase.slug,
   }));
 }
 
