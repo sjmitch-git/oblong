@@ -11,7 +11,7 @@ export default function Markdown({ content }: MarkdownProps) {
     <div className="cms-body prose prose-lg mx-auto dark:prose-invert">
       <ReactMarkdown
         components={{
-          code({ node, className, children, ...props }) {
+          code({ _node, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || "");
             if (match) {
               return (

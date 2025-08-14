@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { getAllPortfolio } from "@/lib/contentful/api";
 import { PortfolioProps } from "@/lib/types";
