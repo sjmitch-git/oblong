@@ -1,0 +1,12 @@
+.card {
+  @apply aspect-square bg-white dark:bg-black shadow-md rounded-lg p-4 relative transition-all duration-200 ease-in-out bg-cover bg-center;
+
+  & .card-link {
+    @apply pointer-events-auto;
+
+    &:hover,
+    &:focus-visible {
+      @apply shadow-lg outline-4 outline-offset-4 outline-accent;
+    }
+  }
+}

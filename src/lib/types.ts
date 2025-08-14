@@ -1,24 +1,30 @@
-import { Document } from "@contentful/rich-text-types";
+type Sys = {
+  id: string;
+};
 
-export type ShowcaseProps = {
-  sys: { id: string };
+type Image = {
+  url: string;
+};
+
+type PortfolioBase = {
   title: string;
   shortTitle: string;
   slug: string;
-  description: string;
-  body: {
-    json: Document;
-    links: {
-      assets: {
-        block: {
-          sys: { id: string };
-          url: string;
-          description: string;
-        }[];
-      };
-    };
-  };
-  date: string;
-  author: string;
-  image: { url: string };
 };
+
+export type PortfolioProps = {
+  sys: Sys;
+} & PortfolioBase & {
+    thumbnail: Image;
+  };
+
+export type PortfolioItemProps = {
+  sys: Sys;
+  description: string;
+  body: string;
+  heroImage: Image;
+  hero_image_alt: string;
+  url: string;
+  keywords: string[];
+  gitHub: string;
+} & PortfolioBase;

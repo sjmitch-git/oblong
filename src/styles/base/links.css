@@ -6,7 +6,7 @@ a {
     @apply text-secondary no-underline;
   }
 
-  &:focus-visible {
+  &:focus-visible:not(.card-link) {
     @apply outline-none bg-accent-light text-dark;
   }
 

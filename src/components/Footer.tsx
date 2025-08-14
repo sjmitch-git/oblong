@@ -4,7 +4,7 @@ import Links from "@/data/links_footer.json";
 
 export default function Footer() {
   return (
-    <footer className="p-8 bg-gradient-to-t from-primary-dark from-30% to-primary to-90% sticky top-full text-light">
+    <footer className="py-8 px-2 bg-gradient-to-t from-primary-dark from-30% to-primary to-90% sticky top-full text-light">
       <div className="container mx-auto flex flex-col justify-center items-center space-y-4">
         <ul className="flex gap-4 justify-center mb-8">
           {Links.map((link: { href: string; name: string; title?: string }, i: number) => (
@@ -19,7 +19,7 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <p className="text-sm" suppressHydrationWarning>
+        <p className="text-sm text-center" suppressHydrationWarning>
           &copy; {new Date().getFullYear()} {AppConfig.name}. All rights reserved.
         </p>
         <p className="text-sm">

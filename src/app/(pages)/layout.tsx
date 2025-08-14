@@ -4,8 +4,8 @@ export default async function PagesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="pt-8 lg:pt-24 md:pb-12 lg:px-4">
-      <article className="max-w-3xl mx-auto">{children}</article>
+    <main className="pt-8 lg:pt-12 pb-12 px-2 md:px-4 lg:px-0 max-w-4xl mx-auto">
+      <article className="mx-auto">{children}</article>
     </main>
   );
 }

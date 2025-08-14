@@ -1,0 +1,5 @@
+.cms-body {
+  & img {
+    @apply mx-auto;
+  }
+}

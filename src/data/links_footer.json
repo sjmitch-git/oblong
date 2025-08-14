@@ -1,4 +1,5 @@
 [
+  { "href": "/portfolio", "name": "Portfolio", "title": "Oblong Portfolio" },
   { "href": "/contact", "name": "Contact", "title": "Contact Us" },
   { "href": "/disclaimer", "name": "Disclaimer", "title": "Disclaimer" }
 ]
