@@ -5,7 +5,7 @@ export const PORTFOLIO_SHARED_FIELDS = `
   title
   shortTitle
   slug
-
+  description
 `;
 
 export const PORTFOLIO_LIST_FIELDS = `
@@ -17,8 +17,8 @@ export const PORTFOLIO_LIST_FIELDS = `
 
 export const PORTFOLIO_ITEM_FIELDS = `
   ${PORTFOLIO_SHARED_FIELDS}
-  description
   url
+  npm
   body
   keywords
   heroImage {

@@ -3,15 +3,11 @@ a {
 
   &:hover,
   &:focus {
-    @apply text-secondary no-underline;
+    @apply opacity-85 no-underline;
   }
 
   &:focus-visible:not(.card-link) {
     @apply outline-none bg-accent-light text-dark;
-  }
-
-  &:active {
-    @apply text-accent;
   }
 
   &[target="_blank"],

@@ -56,7 +56,7 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
         homeLabel={BREADCRUMBS_HOMELABEL}
         separator={BREADCRUMBS_SEPARATOR}
         size={BREADCRUMBS_SIZE}
-        activeLabel={article.title}
+        activeLabel={article.shortTitle || article.title}
       />
       <Hero title={article.title} description={article.description} />
       {article.heroImage && (
@@ -82,6 +82,19 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
               className="text-blue-600 hover:underline"
             >
               {article.shortTitle || article.title}
+            </a>
+          </div>
+        )}
+        {article.npm && (
+          <div className="mt-8">
+            <h2>NPM Package</h2>
+            <a
+              href={article.npm}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              {article.npm}
             </a>
           </div>
         )}

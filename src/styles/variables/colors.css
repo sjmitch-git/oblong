@@ -4,14 +4,14 @@
   --dark: theme("colors.gray.900");
 
   /* Primary Colors */
-  --primary: theme("colors.blue.500");
-  --primary-light: theme("colors.blue.300");
-  --primary-dark: theme("colors.blue.700");
+  --primary: theme("colors.amber.500");
+  --primary-light: theme("colors.amber.300");
+  --primary-dark: theme("colors.amber.600");
 
   /* Secondary Colors */
-  --secondary: theme("colors.cyan.500");
-  --secondary-light: theme("colors.cyan.300");
-  --secondary-dark: theme("colors.cyan.700");
+  --secondary: theme("colors.yellow.500");
+  --secondary-light: theme("colors.yellow.300");
+  --secondary-dark: theme("colors.yellow.700");
 
   /* Accent Colors */
   --accent: theme("colors.fuchsia.500");
