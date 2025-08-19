@@ -12,7 +12,7 @@ export async function POST(request) {
   const payload = await request.json();
   const contentType = payload?.sys?.contentType?.sys?.id;
   const tagMap = {
-    showcase: "showcase",
+    portfolio: "portfolio",
   };
   const tag = tagMap[contentType] || "default";
 
