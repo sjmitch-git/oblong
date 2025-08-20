@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { getAllPortfolio, getPortfolioItem } from "@/lib/contentful/api";
 import { PortfolioProps, PortfolioItemProps } from "@/lib/types";
 import { Alert, Breadcrumbs } from "@/lib/fluid";
@@ -41,6 +42,7 @@ export async function generateMetadata({ params }: PortfolioParamsProps): Promis
 export default async function PortfolioItemPage({ params }: PortfolioParamsProps) {
   const { slug } = await params;
   const article: PortfolioItemProps | undefined = await getPortfolioItem(slug);
+  const allItems = await getAllPortfolio();
 
   if (!article) {
     return (
@@ -49,6 +51,10 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
       </div>
     );
   }
+
+  const currentIndex = allItems.findIndex((item: PortfolioProps) => item.slug === slug);
+  const prevItem = currentIndex > 0 ? allItems[currentIndex - 1] : null;
+  const nextItem = currentIndex < allItems.length - 1 ? allItems[currentIndex + 1] : null;
 
   return (
     <>
@@ -118,6 +124,29 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
           </div>
         )}
       </div>
+      {/* Navigation Links */}
+      <nav className="mt-12 flex justify-between prose prose-lg mx-auto dark:prose-invert border-t border-gray-500">
+        <div>
+          {prevItem && (
+            <p>
+              <strong className="block mb-2">Previous</strong>
+              <Link rel="prev" className="text-lg md:text-2xl" href={`/portfolio/${prevItem.slug}`}>
+                {prevItem.shortTitle || prevItem.title}
+              </Link>
+            </p>
+          )}
+        </div>
+        <div>
+          {nextItem && (
+            <p className="text-right">
+              <strong className="block mb-2">Next</strong>
+              <Link rel="next" className="text-lg md:text-2xl" href={`/portfolio/${nextItem.slug}`}>
+                {nextItem.shortTitle || nextItem.title}
+              </Link>
+            </p>
+          )}
+        </div>
+      </nav>
     </>
   );
 }
