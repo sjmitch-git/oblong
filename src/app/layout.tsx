@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { MetaData } from "@/lib/config";
 import "@/styles/index.css";
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`dark ${inter.className}`}>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ""} />
         <Header />
         {children}
         <Footer />
