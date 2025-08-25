@@ -45,7 +45,7 @@ export const MetaData: Metadata = {
     creator: AppConfig.author,
   },
   other: {
-    "og:logo": `${process.env.NEXT_PUBLIC_API_URL}logo.png`,
+    "og:logo": `${AppConfig.baseUrl}logo.png`,
     "theme-color": "#000000",
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",

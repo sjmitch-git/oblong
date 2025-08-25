@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { AppConfig } from "@/lib/config";
 import { getAllPortfolio, getPortfolioItem } from "@/lib/contentful/api";
 import { PortfolioProps, PortfolioItemProps } from "@/lib/types";
 import { Alert, Breadcrumbs } from "@/lib/fluid";
@@ -36,6 +37,29 @@ export async function generateMetadata({ params }: PortfolioParamsProps): Promis
   return {
     title: article.title,
     description: article.description,
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      url: `${AppConfig.baseUrl}portfolio/${slug}`,
+      images: [
+        {
+          url: article.heroImage.url,
+          alt: article.hero_image_alt,
+          width: 1536,
+          height: 923,
+        },
+      ],
+    },
+    twitter: {
+      title: article.title,
+      description: article.description,
+    },
+    alternates: {
+      canonical: `${AppConfig.baseUrl}portfolio/${slug}`,
+    },
+    other: {
+      "og:logo": article.heroImage.url,
+    },
   };
 }
 

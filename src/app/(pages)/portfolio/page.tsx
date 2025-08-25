@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { AppConfig } from "@/lib/config";
 import { getAllPortfolio } from "@/lib/contentful/api";
 import { PortfolioProps } from "@/lib/types";
 import Hero from "@/components/Hero";
@@ -14,6 +15,18 @@ const description =
 export const metadata: Metadata = {
   title: title,
   description: description,
+  openGraph: {
+    title: title,
+    description: description,
+    url: `${AppConfig.baseUrl}portfolio`,
+  },
+  twitter: {
+    title: title,
+    description: description,
+  },
+  alternates: {
+    canonical: `${AppConfig.baseUrl}portfolio`,
+  },
 };
 
 export default async function PortfolioPage() {
