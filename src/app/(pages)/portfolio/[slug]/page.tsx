@@ -53,6 +53,7 @@ export async function generateMetadata({ params }: PortfolioParamsProps): Promis
     twitter: {
       title: article.title,
       description: article.description,
+      card: "summary_large_image",
     },
     alternates: {
       canonical: `${AppConfig.baseUrl}portfolio/${slug}`,

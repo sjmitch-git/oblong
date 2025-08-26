@@ -19,10 +19,19 @@ export const metadata: Metadata = {
     title: title,
     description: description,
     url: `${AppConfig.baseUrl}portfolio`,
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}icon.png`,
+        alt: `${AppConfig.name} logo`,
+        width: 603,
+        height: 603,
+      },
+    ],
   },
   twitter: {
     title: title,
     description: description,
+    card: "summary_large_image",
   },
   alternates: {
     canonical: `${AppConfig.baseUrl}portfolio`,
