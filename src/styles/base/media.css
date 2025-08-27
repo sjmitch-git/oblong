@@ -1,8 +1,3 @@
-.navbrand img {
-  width: 200px;
-  height: 50px;
-}
-
 .logo {
-  @apply w-[200px] h-[50px] md:w-[300px] md:h-[72px] lg:w-[554px] lg:h-[133px];
+  @apply w-[160px] h-[40px] md:w-[300px] md:h-[72px] lg:w-[554px] lg:h-[133px];
 }

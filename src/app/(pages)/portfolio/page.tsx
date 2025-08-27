@@ -40,6 +40,7 @@ export const metadata: Metadata = {
 
 export default async function PortfolioPage() {
   const articles: PortfolioProps[] = await getAllPortfolio();
+  console.log("articles", articles);
 
   return (
     <>
@@ -50,7 +51,7 @@ export default async function PortfolioPage() {
       />
       <Hero title={title} description={description} />
       <div className="px-2 md:px-4 lg:px-0 pb-12 mx-auto">
-        <div className="grid gap-8 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid gap-4 md:gap-8 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
           {articles.map((article: PortfolioProps) => (
             <ListCard
               key={article.sys.id}

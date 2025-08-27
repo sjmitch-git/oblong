@@ -102,16 +102,11 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
       ) : (
         <Alert status="warning" message="No content available" title="Content Missing" />
       )}
-      <div className="cms-body prose prose-lg mx-auto dark:prose-invert">
+      <div className="cms-body prose prose-lg mx-auto dark:prose-invert px-2 md:px-4 lg:px-0">
         {article.url && (
           <div className="mt-8">
             <h2>Website</h2>
-            <a
-              href={article.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
+            <a href={article.url} target="_blank" rel="noopener noreferrer">
               {article.shortTitle || article.title}
             </a>
           </div>
@@ -119,12 +114,7 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
         {article.npm && (
           <div className="mt-8">
             <h2>NPM Package</h2>
-            <a
-              href={article.npm}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
+            <a href={article.npm} target="_blank" rel="noopener noreferrer">
               {article.npm}
             </a>
           </div>
@@ -132,12 +122,7 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
         {article.gitHub && (
           <div className="mt-8">
             <h2>GitHub</h2>
-            <a
-              href={article.gitHub}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
+            <a href={article.gitHub} target="_blank" rel="noopener noreferrer">
               {article.gitHub}
             </a>
           </div>
@@ -150,7 +135,7 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
         )}
       </div>
       {/* Navigation Links */}
-      <nav className="mt-12 flex justify-between prose prose-lg mx-auto dark:prose-invert border-t border-gray-500">
+      <nav className="mt-12 flex justify-between prose prose-lg mx-auto dark:prose-invert border-t border-gray-500 px-2 md:px-4 lg:px-0 py-6">
         <div>
           {prevItem && (
             <p>

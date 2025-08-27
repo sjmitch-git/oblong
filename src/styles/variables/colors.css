@@ -14,9 +14,9 @@
   --secondary-dark: theme("colors.yellow.700");
 
   /* Accent Colors */
-  --accent: theme("colors.fuchsia.500");
-  --accent-light: theme("colors.fuchsia.300");
-  --accent-dark: theme("colors.fuchsia.700");
+  --accent: theme("colors.amber.500");
+  --accent-light: theme("colors.amber.300");
+  --accent-dark: theme("colors.amber.700");
 
   /* Neutral Colors */
   --neutral: theme("colors.slate.500");

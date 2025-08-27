@@ -16,7 +16,7 @@ export default function ContactPage() {
   return (
     <>
       <Hero title={title} description={description} />
-      <div className="px-2 md:px-4 lg:px-0 pb-12 max-w-prose mx-auto">
+      <div className="pt-4 px-2 md:px-4 lg:p-4 pb-12 bg-neutral max-w-prose mx-auto md:mb-12">
         <ContactForm />
       </div>
     </>

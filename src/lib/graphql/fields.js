@@ -6,6 +6,7 @@ export const PORTFOLIO_SHARED_FIELDS = `
   shortTitle
   slug
   description
+  keywords
 `;
 
 export const PORTFOLIO_LIST_FIELDS = `
@@ -20,7 +21,6 @@ export const PORTFOLIO_ITEM_FIELDS = `
   url
   npm
   body
-  keywords
   heroImage {
     url
   }

@@ -8,7 +8,7 @@ interface MarkdownProps {
 
 export default function Markdown({ content }: MarkdownProps) {
   return (
-    <div className="cms-body prose prose-lg mx-auto dark:prose-invert">
+    <div className="cms-body prose prose-lg mx-auto dark:prose-invert px-2 md:px-4 lg:px-0">
       <ReactMarkdown
         components={{
           code({ className, children, ...props }) {
