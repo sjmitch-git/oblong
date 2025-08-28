@@ -11,6 +11,7 @@ type PortfolioBase = {
   shortTitle: string;
   description: string;
   slug: string;
+  keywords: string[];
 };
 
 export type PortfolioProps = {
@@ -26,6 +27,5 @@ export type PortfolioItemProps = {
   hero_image_alt: string;
   url: string;
   npm: string;
-  keywords: string[];
   gitHub: string;
 } & PortfolioBase;

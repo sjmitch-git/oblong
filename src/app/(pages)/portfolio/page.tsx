@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { AppConfig } from "@/lib/config";
 import { getAllPortfolio } from "@/lib/contentful/api";
@@ -40,7 +41,6 @@ export const metadata: Metadata = {
 
 export default async function PortfolioPage() {
   const articles: PortfolioProps[] = await getAllPortfolio();
-  console.log("articles", articles);
 
   return (
     <>
@@ -50,18 +50,14 @@ export default async function PortfolioPage() {
         size={BREADCRUMBS_SIZE}
       />
       <Hero title={title} description={description} />
-      <div className="px-2 md:px-4 lg:px-0 pb-12 mx-auto">
-        <div className="grid gap-4 md:gap-8 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
-          {articles.map((article: PortfolioProps) => (
-            <ListCard
-              key={article.sys.id}
-              title={article.title}
-              link={`/portfolio/${article.slug}`}
-              image={article.thumbnail?.url}
-            />
-          ))}
-        </div>
-      </div>
+      <ul className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 mb-12 px-2 md:px-4 lg:px-0">
+        {articles.map((article: PortfolioProps) => (
+          <ListCard
+            key={article.sys.id}
+            article={article}
+          />
+        ))}
+      </ul>
     </>
   );
 }
