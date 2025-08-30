@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { AppConfig } from "@/lib/config";
 import { getAllPortfolio } from "@/lib/contentful/api";
