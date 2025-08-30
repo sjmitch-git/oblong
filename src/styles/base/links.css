@@ -7,7 +7,7 @@ a {
   }
 
   &:focus-visible:not(.card-link) {
-    @apply outline-none bg-accent-light text-dark;
+    @apply outline-none;
   }
 
   &[target="_blank"],
@@ -26,6 +26,14 @@ a {
 
   &.button-link {
     @apply inline-block px-4 py-2 no-underline bg-primary-dark text-white rounded hover:bg-secondary transition;
+  }
+
+  &.card-link {
+    @apply block h-full w-full bg-neutral;
+
+    &:focus-visible {
+      @apply bg-neutral;
+    }
   }
 }
 

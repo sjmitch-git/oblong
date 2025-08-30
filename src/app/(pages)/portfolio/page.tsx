@@ -52,10 +52,7 @@ export default async function PortfolioPage() {
       <Hero title={title} description={description} />
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 mb-12 px-2 md:px-4 lg:px-0">
         {articles.map((article: PortfolioProps) => (
-          <ListCard
-            key={article.sys.id}
-            article={article}
-          />
+          <ListCard key={article.sys.id} {...article} />
         ))}
       </ul>
     </>
