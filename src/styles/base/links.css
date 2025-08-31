@@ -30,6 +30,14 @@ a {
 
   &.card-link {
     @apply block h-full w-full bg-neutral;
+
+    &:focus-visible {
+      @apply outline-none;
+    }
+
+    &:focus {
+      @apply opacity-100;
+    }
   }
 }
 

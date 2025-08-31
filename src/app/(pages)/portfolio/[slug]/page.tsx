@@ -94,7 +94,7 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
         <img
           src={article.heroImage.url}
           alt={article.hero_image_alt}
-          className="w-full h-auto object-cover mb-12"
+          className="w-full h-auto object-cover mb-12 px-2 md:px-4 lg:px-0"
         />
       )}
       {article.body ? (
@@ -102,7 +102,7 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
       ) : (
         <Alert status="warning" message="No content available" title="Content Missing" />
       )}
-      <div className="cms-body prose prose-lg mx-auto dark:prose-invert px-2 md:px-4 lg:px-0">
+      <div className="cms-body prose prose-lg mx-auto dark:prose-invert px-2 md:px-0">
         {article.url && (
           <div className="mt-8">
             <h2>Website</h2>
@@ -135,11 +135,11 @@ export default async function PortfolioItemPage({ params }: PortfolioParamsProps
         )}
       </div>
       {/* Navigation Links */}
-      <nav className="mt-12 flex justify-between prose prose-lg mx-auto dark:prose-invert border-t border-gray-500 px-2 md:px-4 lg:px-0 py-6">
+      <nav className="mt-12 flex justify-between prose prose-lg mx-auto dark:prose-invert border-t border-gray-500 px-4 md:px-0 py-6">
         <div>
           {prevItem && (
             <p>
-              <strong className="block mb-2">Previous</strong>
+              <strong className="block mb-2">Prev</strong>
               <Link rel="prev" className="text-lg md:text-2xl" href={`/portfolio/${prevItem.slug}`}>
                 {prevItem.shortTitle || prevItem.title}
               </Link>

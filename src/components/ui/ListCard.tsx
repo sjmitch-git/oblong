@@ -9,7 +9,7 @@ const ListCard = (article: PortfolioProps) => {
       style={{ perspective: "1000px" }}
     >
       <Link href={`/portfolio/${article.slug}`} className="card-link group">
-        <div className="relative w-full h-48 transition-transform duration-500 [transform-style:preserve-3d] group-focus-within:[transform:rotateY(180deg)] group-hover:[transform:rotateY(180deg)]">
+        <div className="relative w-full h-40 transition-transform duration-500 [transform-style:preserve-3d] lg:group-focus-within:[transform:rotateY(180deg)] lg:group-hover:[transform:rotateY(180deg)]">
           {/* Front Face */}
           <div className="absolute inset-0 [backface-visibility:hidden] grid grid-cols-4 bg-white dark:bg-black">
             <div className="text-center aspect-square p-1">
