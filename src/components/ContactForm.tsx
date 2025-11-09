@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useForm } from "@formspree/react";
-import { Form, Fieldset, TextInput, Alert, TextArea, Button } from "@/lib/fluid";
+import { Form, Fieldset, TextInput, Alert, TextArea, Button } from "@/lib/breeze";
 
 type ContactFormProps = {
   setIsOpen?: (open: boolean) => void;

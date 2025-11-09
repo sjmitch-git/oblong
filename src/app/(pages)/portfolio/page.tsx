@@ -5,7 +5,7 @@ import { getAllPortfolio } from "@/lib/contentful/api";
 import { PortfolioProps } from "@/lib/types";
 import Hero from "@/components/Hero";
 import ListCard from "@/components/ui/ListCard";
-import { Breadcrumbs } from "@/lib/fluid";
+import { Breadcrumbs } from "@/lib/breeze";
 import { BREADCRUMBS_SEPARATOR, BREADCRUMBS_SIZE, BREADCRUMBS_HOMELABEL } from "@/lib/constants";
 
 const title = "Portfolio";

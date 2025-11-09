@@ -10,12 +10,12 @@ a {
     @apply outline-none;
   }
 
-  &[target="_blank"],
+  &[target="_blank"]:not(.nocontent),
   &[download] {
     @apply inline-flex items-start gap-1 mr-1 after:text-xs after:align-super;
   }
 
-  &[target="_blank"]::after {
+  &[target="_blank"]:not(.nocontent)::after {
     content: "↗";
     @apply no-underline text-xs align-super;
   }

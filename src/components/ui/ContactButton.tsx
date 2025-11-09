@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Button, Dialog } from "@/lib/fluid";
+import { Button, Dialog } from "@/lib/breeze";
 import { FaEnvelopeSquare } from "react-icons/fa";
 import ContactForm from "@/components/ContactForm";
 

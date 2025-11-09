@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AppConfig } from "@/lib/config";
 import { getAllPortfolio, getPortfolioItem } from "@/lib/contentful/api";
 import { PortfolioProps, PortfolioItemProps } from "@/lib/types";
-import { Alert, Breadcrumbs } from "@/lib/fluid";
+import { Alert, Breadcrumbs } from "@/lib/breeze";
 import Hero from "@/components/Hero";
 import Markdown from "@/components/ui/Markdown";
 import { BREADCRUMBS_SEPARATOR, BREADCRUMBS_SIZE, BREADCRUMBS_HOMELABEL } from "@/lib/constants";

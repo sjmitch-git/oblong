@@ -1,4 +1,4 @@
-import { Heading } from "@/lib/fluid";
+import { Heading } from "@/lib/breeze";
 
 interface HeroProps {
   title: string;
