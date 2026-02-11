@@ -4,7 +4,7 @@ import Links from "@/data/links_footer.json";
 
 export default function Footer() {
   return (
-    <footer className="py-8 px-2 bg-gradient-to-t from-danger-dark from-30% to-dark to-90% sticky top-full text-light">
+    <footer className="py-8 px-2 bg-gradient-to-t from-danger-dark to-dark sticky top-full text-light">
       <div className="container mx-auto flex flex-col justify-center items-center space-y-4">
         <ul className="flex gap-4 justify-center mb-8">
           {Links.map((link: { href: string; name: string; title?: string }, i: number) => (
